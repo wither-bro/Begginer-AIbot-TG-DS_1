@@ -6,8 +6,8 @@
 
 ```cpp
 // Подключение системных протоколов SERIES(CG)
-#include <гемини_апи.h>
-#include <протоколы_защиты.h>
+#include <gemini_api.h>
+#include <protocols_security.h>
 
 пространство_имен Студия_SERIES_CG {
     класс ЯдроМозга {
