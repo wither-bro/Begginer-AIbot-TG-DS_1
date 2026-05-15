@@ -1,22 +1,30 @@
-def add_student_inverted(display_name, username):
+def add_student_to_fixed_list(display_name, username):
     file_path = "Students/Classrooms/Classroom_1/class.cs"
     
     with open(file_path, 'r', encoding='utf-8') as f:
         lines = f.readlines()
 
-    # Считаем текущих студентов (строки, которые начинаются с цифры)
-    count = sum(1 for line in lines if line[0].isdigit())
+    # Если файл пустой или меньше 34 строк, нужно его подготовить
+    while len(lines) < 40:
+        lines.append("\n")
+
+    # Считаем, сколько студентов уже записано (в первых 31 строках)
+    count = 0
+    for i in range(31):
+        if lines[i].strip() and not lines[i].startswith("/*"):
+            count += 1
 
     if count >= 31:
-        return False # Сигнал к переходу в Classroom_2
+        print("Classroom 1 переполнен! Переходим к следующему...")
+        return False
 
-    # Создаем новую строку
+    # Записываем студента на следующую свободную строку (от 0 до 30)
     new_entry = f"{count + 1}. [{display_name}](https://t.me/{username}) (@{username})\n"
+    lines[count] = new_entry
 
-    # Вставляем новую строку сразу после первой строки (после /* === ...)
-    lines.insert(1, new_entry)
-
+    # Сохраняем, при этом строка 34 (индекс 33) остается нетронутой
     with open(file_path, 'w', encoding='utf-8') as f:
         f.writelines(lines)
     
+    print(f"Студент {display_name} зачислен на место №{count + 1}")
     return True
