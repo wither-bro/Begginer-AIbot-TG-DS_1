@@ -20,22 +20,4 @@
 ---
 
 ## 📚 ДОПОЛНИТЕЛЬНЫЕ СТРАНИЦЫ
-В этом разделе собраны все важные документы проекта. Список ниже формируется путем сканирования репозитория на наличие `.md` файлов (исключая системные руководства).
-
-```cpp
-// Динамический поиск документации SERIES(CG)
-#include <filesystem>
-#include <vector>
-
-void ScanDocuments() {
-    std::string root = "./";
-    for (const auto& file : std::filesystem::recursive_directory_iterator(root)) {
-        if (file.path().extension() == ".md") {
-            std::string name = file.path().filename().string();
-            // Исключаем туториал и главный ридми из списка дополнений
-            if (name != "tutorial.md" && name != "README.md") {
-                std::cout << "* [" << name << "](" << file.path().string() << ")" << std::endl;
-            }
-        }
-    }
-}
+В этом разделе собраны все важные документы проекта. Список ниже формируется путем сканирования репозитория на наличие `.md` файлов (исключая системные 
